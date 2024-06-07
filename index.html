@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter-Clone-Login</title>
+    <style>
+      body {
+        background-color: black;
+        margin: 0;
+      }
+
+      .container {
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        background-color: rgba(91, 112, 131, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-container {
+        width: 600px;
+        height: 90%;
+        background-color: black;
+        border-radius: 15px;
+        font-family: Roboto;
+        align-items: center;
+        overflow-y: scroll;
+        scrollbar-color: rgb(62, 65, 68) rgb(22, 24, 28);
+      }
+
+      .x-symbols-container {
+        background-color: black;
+        position: sticky;
+        right: 0;
+        top: 0;
+        left: 0;
+        display: flex;
+        height: 33px;
+        padding-top: 9px;
+        padding-bottom: 18px;
+        z-index: 100;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+
+      .close-icon {
+        width: 10px;
+      }
+
+      .close-icon-container {
+        flex: 1;
+      }
+
+      .shadow-close-icon {
+        width: 32px;
+        height: 100%;
+        background-color: transparent;
+        border-radius: 20px;
+        transition: background-color 0.2s;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 7px;
+      }
+
+      .shadow-close-icon:hover {
+        background-color: rgba(128, 128, 128, 0.2);
+      }
+
+      .x-logo-icon {
+        width: 26px;
+        padding-top: 5px;
+      }
+
+      .x-logo-icon-container {
+        flex: 1;
+        margin-right: 8px;
+      }
+
+      .login-content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 45px;
+      }
+
+      .login-content {
+        width: 51%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .heading {
+        color: white;
+        text-align: start;
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .account-info {
+        background-color: white;
+        padding: 7px 8px;
+        border-radius: 50px;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+      }
+
+      .profile-picture-container {
+        width: 28px;
+      }
+
+      .profile-picture {
+        width: 20px;
+        border-radius: 100%;
+        vertical-align: top;
+      }
+
+      .user-info {
+        flex: 1;
+      }
+
+      .sign-message {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgb(76, 76, 76);
+        margin: 0;
+      }
+
+      .email {
+        color: grey;
+        font-size: 11px;
+        margin: 0;
+      }
+
+      .google-logo {
+        width: 20px;
+        vertical-align: middle;
+      }
+
+      .apple-button {
+        background-color: rgb(253, 253, 253);
+        margin-top: 23px;
+        padding: 10px 0px;
+        border-radius: 50px;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        color: rgb(45, 45, 45);
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .apple-button:hover {
+        background-color: rgb(230, 230, 230);
+      }
+
+      .apple-icon {
+        width: 17px;
+        margin-right: 4px;
+      }
+
+      .lines {
+        height: 30px;
+      }
+
+      .lines div {
+        display: inline-block;
+        color: white;
+        border-bottom: 1px solid rgb(80, 80, 80);
+        height: 5px;
+        vertical-align: top;
+        width: 135px;
+      }
+
+      .lines span {
+        display: inline-block;
+        vertical-align: bottom;
+        color: white;
+      }
+
+      .input-container {
+        position: relative;
+        border: 1px solid rgb(64, 64, 64);
+        border-radius: 5px;
+        color: gray;
+        padding: 17px 7px 17px;
+        margin-bottom: 30px;
+      }
+
+      .input-container span {
+        font-weight: 300;
+        transition: font-size 0.3s;
+      }
+
+      .input-container:focus-within {
+        border: 2px solid rgb(29, 155, 240);
+        font-size: 12px;
+        color: rgb(29, 155, 240);
+        padding: 8px 7px 0;
+        height: 43px;
+      }
+      input:focus {
+        padding: 0 7px 0;
+        font-size: 17px;
+        top: 25px;
+        left: 0;
+        right: 0;
+        bottom: 5px;
+      }
+
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15px 7px 15px;
+        outline: none;
+        background-color: transparent;
+        border: none;
+        color: white;
+      }
+
+      .password-button,
+      .next-button {
+        padding: 10px 0px;
+        border-radius: 50px;
+        border: none;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .next-button {
+        background-color: rgb(238, 242, 243);
+        transition: background-color 0.3s;
+        color: rgb(45, 45, 45);
+        margin-bottom: 25px;
+      }
+
+      .next-button:hover {
+        background-color: rgb(216, 220, 221);
+      }
+
+      .password-button {
+        border: 1px solid rgb(117, 117, 117);
+        background-color: transparent;
+        color: white;
+        transition: background-color 0.2s;
+      }
+
+      .password-button:hover {
+        background-color: rgba(239, 243, 244, 0.094);
+      }
+
+      .account-question {
+        margin-top: 37px;
+        color: rgb(120, 120, 120);
+        font-size: 15px;
+        font-weight: 400;
+      }
+
+      .account-question span {
+        color: rgb(29, 155, 240);
+        cursor: pointer;
+        font-weight: 300;
+      }
+
+      .account-question span:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          display: flex;
+        }
+        .login-container {
+          position: static;
+          width: 100%;
+          height: 100%;
+        }
+
+        .login-content {
+          width: 270px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-container">
+        <div class="x-symbols-container">
+          <div class="close-icon-container">
+            <div class="shadow-close-icon">
+              <img class="close-icon" src="icons/close-icon.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="x-logo-icon-container">
+            <img class="x-logo-icon" src="icons/x-logo-icon.svg" alt="" />
+          </div>
+        </div>
+        <div class="login-content-container">
+          <div class="login-content">
+            <h1 class="heading">Sign in to X</h1>
+
+            <div class="account-info">
+              <div class="profile-picture-container">
+                <img src="icons/profile-picture.png" class="profile-picture" />
+              </div>
+
+              <div class="user-info">
+                <p class="sign-message">Sign in as Alejandro</p>
+                <p class="email">alejandrocamilojavier5@gmail.com</p>
+              </div>
+
+              <img class="google-logo" src="icons/google-icon.png" alt="" />
+            </div>
+
+            <button class="apple-button">
+              <img class="apple-icon" src="icons/apple-icon.svg" alt="" />
+              Sign in with Apple
+            </button>
+
+            <div class="lines">
+              <div></div>
+              <span>or</span>
+              <div></div>
+            </div>
+
+            <div class="input-container">
+              <span>Phone, email, or, username </span>
+              <input type="text" />
+            </div>
+
+            <button class="next-button">Next</button>
+
+            <button class="password-button">Forgot password?</button>
+
+            <div class="account-question">
+              Don't have an account?
+              <span>Sign up</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
